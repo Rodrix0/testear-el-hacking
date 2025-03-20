@@ -22,7 +22,7 @@ test('Login automático en una página', async ({ page }) => {
 
 
 
-  
+
   //Caso fallido credenciales incorrectas
   await page.goto(credentials.url);
 
@@ -31,12 +31,26 @@ test('Login automático en una página', async ({ page }) => {
   await page.waitForSelector('input[placeholder="Contraseña"]', { state: 'visible' });
 
   // Llenar usuaio y contraseña
-  await page.getByPlaceholder('Usuario').fill('43098654');
-  await page.getByPlaceholder('Contraseña').fill('Rodrigoror1');
+  await page.getByPlaceholder('Usuario').fill('666');
+  await page.getByPlaceholder('Contraseña').fill('demo');
   // hace click en el boton de ingresar
   const button2 = await page.locator('input[name="ctl00$ContentPlaceHolder1$ImageButton1"]');
   await button2.click();
   // Esperar el mensaje de error
   await expect(page.getByText("La combinación de usuario y clave no coincide")).toBeVisible();
+
+   // Esperar que los campos de usuario y contraseña estén visibles
+   await page.waitForSelector('input[placeholder="Usuario"]', { state: 'visible' });
+   await page.waitForSelector('input[placeholder="Contraseña"]', { state: 'visible' });
+ 
+   // Llenar usuaio y contraseña
+   await page.getByPlaceholder('Usuario').fill('abc');
+   await page.getByPlaceholder('Contraseña').fill('demo');
+   // hace click en el boton de ingresar
+   await button2.click();
+   // Esperar el mensaje de error
+   await expect(page.getByText("La combinación de usuario y clave no coincide")).toBeVisible();
+
+  
 
 });
