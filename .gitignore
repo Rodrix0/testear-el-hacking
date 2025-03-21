@@ -1,5 +1,6 @@
 # Ignorar credenciales
 config/secrets.ts
+config/secrets2.ts
 
 # Playwright
 node_modules/
