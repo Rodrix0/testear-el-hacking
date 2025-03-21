@@ -3,7 +3,7 @@ import { credentials } from '../config/secrets';  // Importa credenciales
 
 test('Login automático en una página con caso exitoso', async ({ page }) => {
   // Caso exitoso credenciales funcionando
-  await page.goto(credentials.url);
+  await page.goto(credentials.urlSistem);
 
   // Esperar que los campos de usuario y contraseña estén visibles
   await page.waitForSelector('input[placeholder="Usuario"]', { state: 'visible' });
@@ -16,14 +16,14 @@ test('Login automático en una página con caso exitoso', async ({ page }) => {
   const button = await page.locator('input[name="ctl00$ContentPlaceHolder1$ImageButton1"]');
   await button.click();
   //Se verifica que se redirife correctamente
-  await expect(page).toHaveURL(credentials.url2);
+  await expect(page).toHaveURL(credentials.url2Sistem);
   await expect(page.locator('text=Magallanes, Rodrigo Ezequiel - Ingeniería en Sistemas de Información(R. M. Nº 556/17) - Central')).toBeVisible();
 
 
 });
 test('Login automático en una página con caso falllido', async ({ page }) => {
     //Caso fallido credenciales incorrectas
-    await page.goto(credentials.url);
+    await page.goto(credentials.urlSistem);
 
     // Esperar que los campos de usuario y contraseña estén visibles
     await page.waitForSelector('input[placeholder="Usuario"]', { state: 'visible' });
@@ -54,7 +54,7 @@ test('Login automático en una página con caso falllido', async ({ page }) => {
    });
    test('Login automático en una página y ver mis Materias,Horarios,Inasistencia', async ({ page }) => {
     // Caso exitoso credenciales funcionando
-    await page.goto(credentials.url);
+    await page.goto(credentials.urlSistem);
   
     // Esperar que los campos de usuario y contraseña estén visibles
     await page.waitForSelector('input[placeholder="Usuario"]', { state: 'visible' });
@@ -67,7 +67,7 @@ test('Login automático en una página con caso falllido', async ({ page }) => {
     const button = await page.locator('input[name="ctl00$ContentPlaceHolder1$ImageButton1"]'); //Se usa porque input no tiene texto 
     await button.click();
     //Se verifica que se redirife correctamente
-    await expect(page).toHaveURL(credentials.url2);
+    await expect(page).toHaveURL(credentials.url2Sistem);
     await expect(page.locator('text=Magallanes, Rodrigo Ezequiel - Ingeniería en Sistemas de Información(R. M. Nº 556/17) - Central')).toBeVisible();
      //Se ingresa a cursado
      const button2 = await page.locator('#ctl00_PanelCursado_header'); //# porque los id son unicos
