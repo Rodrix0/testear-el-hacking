@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { credentials } from '../config/secrets';  // Importa credenciales
+//test.use({ headless: false });
+
 
 test('Login automático en una página con caso exitoso', async ({ page }) => {
   // Caso exitoso credenciales funcionando
@@ -21,7 +23,9 @@ test('Login automático en una página con caso exitoso', async ({ page }) => {
 
 
 });
+
 test('Login automático en una página con caso falllido', async ({ page }) => {
+
     //Caso fallido credenciales incorrectas
     await page.goto(credentials.urlSistem);
 
@@ -79,6 +83,12 @@ test('Login automático en una página con caso falllido', async ({ page }) => {
 
     // Hacer click en el enlace
     await materiasLink.click();
+
+    await expect(page).toHaveURL(credentials.materiasLink);
+
+
+
+
 
   
   

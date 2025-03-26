@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { credentials } from '../config/secrets2';  // Importa credenciales
+//test.use({ headless: false }); // Esto abre el navegador real
+
 
   test('Login automático en el aula', async ({ page }) => {
     // Caso exitoso credenciales funcionando
